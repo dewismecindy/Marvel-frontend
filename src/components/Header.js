@@ -1,4 +1,10 @@
+import logo from "../assets/logositemarvel.png";
+
 const Header = () => {
-  return <div>Header</div>;
+  return (
+    <header>
+      <img src={logo} alt="logo Marvel" />
+    </header>
+  );
 };
 export default Header;
