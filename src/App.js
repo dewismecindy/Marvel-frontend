@@ -4,6 +4,8 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import { useState } from "react";
+
 /* Les imports pages */
 import Home from "./pages/Home";
 import Comics from "./pages/Comics";
@@ -17,29 +19,22 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
-  function SaveData(data) {
-    let favoriteFromUser = [];
-    favoriteFromUser = JSON.parse(localStorage.getItem("favorite")) || [];
-
-    if (favoriteFromUser.some((id) => (id === data) === true)) {
-      return alert`Ce personnage est correctement ajouté à vos favoris`;
-    } else {
-      favoriteFromUser.push(data);
-      localStorage.setItem("favorite", JSON.stringify(favoriteFromUser));
-      alert`Ce personnage est dèjà ajouté à vos favoris`;
-    }
-  }
   return (
     <Router>
+      <Header />
+      <Navbar />
       <Routes>
+        {/* Page d'accueil */}
         <Route path="/" element={<Home />}></Route>
-        <Route path="/comics" element={<Comics />}></Route>
-        <Route path="/characters" element={<Characters />}></Route>
-        <Route path="/favorites" element={<Favorites />}></Route>
-        <Route
-          path="/character"
-          element={<Character SaveData={SaveData} />}
-        ></Route>
+        {/* Infos sur un seul personnage */}
+        <Route path="/Character" element={<Character />}></Route>
+        {/* INfos sur la BD concernée */}
+        <Route path="/Comics" element={<Comics />}></Route>
+        {/* infos sur TOUT les personnages */}
+        <Route path="/Characters" element={<Characters />}></Route>
+        {/* infos sur les personnages favoris de l'utilisateur */}
+        <Route path="/Favorites" element={<Favorites />}></Route>
+        <Footer />
       </Routes>
     </Router>
   );
