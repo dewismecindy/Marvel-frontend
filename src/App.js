@@ -2,9 +2,6 @@ import "./App.css";
 
 /* Les import de packages */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
 
 /* Les imports pages */
 import Home from "./pages/Home";
@@ -17,6 +14,7 @@ import Character from "./pages/Character";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+/* import Footer from "./components/Footer"; */
 
 function App() {
   return (
@@ -27,15 +25,15 @@ function App() {
         {/* Page d'accueil */}
         <Route path="/" element={<Home />}></Route>
         {/* Infos sur un seul personnage */}
-        <Route path="/Character" element={<Character />}></Route>
+        <Route path="/character/:id" element={<Character />}></Route>
         {/* INfos sur la BD concernée */}
-        <Route path="/Comics" element={<Comics />}></Route>
+        <Route path="/comics" element={<Comics />}></Route>
         {/* infos sur TOUT les personnages */}
-        <Route path="/Characters" element={<Characters />}></Route>
+        <Route path="/characters" element={<Characters />}></Route>
         {/* infos sur les personnages favoris de l'utilisateur */}
-        <Route path="/Favorites" element={<Favorites />}></Route>
-        <Footer />
+        <Route path="/favorites" element={<Favorites />}></Route>
       </Routes>
+      <Footer />
     </Router>
   );
 }
