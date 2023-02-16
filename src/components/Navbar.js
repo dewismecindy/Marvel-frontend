@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logositemarvel.png";
 import entete from "../assets/entetemarvel.jpg";
 
-const Navbar = () => {
+const Navbar = ({ url }) => {
   return (
     <div>
       <div>

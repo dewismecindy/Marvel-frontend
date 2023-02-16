@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 /* Les imports pages */
-import Home from "./pages/Home";
+
 import Comics from "./pages/Comics";
 import Favoris from "./pages/Favoris";
 import ComicsRelated from "./pages/ComicsRelated";
@@ -16,14 +16,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
-  const [url, setUrl] = useState("");
+  const [search, setSearch] = useState("");
   const [error, setError] = useState("");
   const [placeHolder, setPlaceHolder] = useState("");
   const [errorComics, setErrorComics] = useState("");
   const [errorCharacter, setErrorCharacter] = useState("");
   return (
     <Router>
-      <Header url={url} />
+      <Header search={search} setSearch={setSearch} />
       <Navbar />
       <Routes>
         {/* Page */}
@@ -31,9 +31,9 @@ function App() {
           path="/comics"
           element={
             <Comics
+              search={search}
               error={error}
               setError={setError}
-              setUrl={setUrl}
               placeHolder={placeHolder}
               setPlaceHolder={setPlaceHolder}
             />
@@ -46,7 +46,7 @@ function App() {
           path="/favoris"
           element={
             <Favoris
-              setUrl={setUrl}
+              search={search}
               errorComics={errorComics}
               errorCharacter={errorCharacter}
               setErrorCharacter={setErrorCharacter}
@@ -57,12 +57,12 @@ function App() {
         <Route
           path="/"
           element={
-            <Home
+            <ComicsRelated
+              search={search}
               error={error}
               setError={setError}
               placeHolder={placeHolder}
               setPlaceHolder={setPlaceHolder}
-              setUrl={setUrl}
             />
           }
         ></Route>
