@@ -1,1 +1,5 @@
-
+.container {
+  width: 1064px;
+  margin: 0 auto;
+  background-color: black;
+}

@@ -1,39 +1,30 @@
 import logo from "../assets/logositemarvel.png";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Header = (props) => {
-  const handleSearch = (event) => {
-    const value = event.target.value;
-    props.setSearch(value);
+const Header = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    console.log("Search term:", searchTerm);
+    // Faire une requête API avec le terme de recherche saisi
   };
   return (
     <header>
-      <Link to={"/"}>
-        <img src={logo} alt="logo Marvel" />
-      </Link>
-      <Link
-        to={"/"}
-        onClick={() => {
-          props.setSearch("");
-        }}
-      >
-        Characters
-      </Link>
-      <Link
-        to={"/comics"}
-        onClick={() => {
-          props.setSearch("");
-        }}
-      >
-        Comics
-      </Link>
-      <Link to={"/favoris"}>Favoris</Link>
-      <input
-        type="text"
-        placeholder="Search"
-        value={props.search}
-        onChange={handleSearch}
-      />
+      <img src={logo} alt="logo Marvel" />
+      <form onSubmit={handleSearchSubmit}>
+        <label htmlFor="search-input">Rechercher</label>
+        <input
+          type="text"
+          id="search-input"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <button type="submit">Rechercher</button>
+      </form>
     </header>
   );
 };

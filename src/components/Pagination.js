@@ -1,31 +1,23 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
-const Pagination = (page) => {
+const Pagination = ({ currentPage, totalPages, onChangePage }) => {
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
-    <>
-      {page.counter !== 1 ? (
-        <p
-          onClick={() => {
-            if (page.counter !== 1) {
-              page.setCounter(page.counter - 1);
-            }
-          }}
-        >
-          <FontAwesomeIcon icon="arrow-left" className="arrow" />
-        </p>
-      ) : (
-        <div className="empty-div"></div>
-      )}
-
-      <p>{page.counter}</p>
-      <p
-        onClick={() => {
-          page.setCounter(page.counter + 1);
-        }}
-      >
-        <FontAwesomeIcon icon="arrow-right" className="arrow" />
-      </p>
-    </>
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map((page) => (
+          <li
+            key={page}
+            className={`page-item ${currentPage === page && "active"}`}
+          >
+            <button className="page-link" onClick={() => onChangePage(page)}>
+              {page}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
