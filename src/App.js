@@ -5,6 +5,7 @@ import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import Favoris from "./pages/Favoris";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 import Cookies from "js-cookie";
 import { useState } from "react";
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/comics/:characterId" element={<Comics />} />
         <Route path="/favoris" element={<Favoris />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
