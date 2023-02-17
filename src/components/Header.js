@@ -15,6 +15,11 @@ const Header = () => {
   return (
     <header>
       <img src={logo} alt="logo Marvel" />
+      <button>Personnages</button>
+      <button>Comics</button>
+      <button>Favoris</button>
+      <button>S'inscrire</button>
+      <button>Se connecter</button>
       <form onSubmit={handleSearchSubmit}>
         <label htmlFor="search-input">Rechercher</label>
         <input

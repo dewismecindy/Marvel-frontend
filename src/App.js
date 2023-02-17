@@ -33,7 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home search={search} baseUrl={baseUrl} />} />
         <Route path="/characters" element={<Characters />} />
-        <Route path="/character/:characterId" element={<Characters />} />
+        <Route path="/characters/:characterId" element={<Characters />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/comics/:characterId" element={<Comics />} />
         <Route path="/favoris" element={<Favoris />} />
