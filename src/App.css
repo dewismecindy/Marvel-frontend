@@ -1,5 +1,13 @@
-.container {
-  width: 1064px;
-  margin: 0 auto;
-  background-color: black;
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  margin: 50px auto;
+  height: 30vh;
+  justify-content: space-between;
+}
+
+.signup-container input {
+  width: 65%;
 }

@@ -8,16 +8,22 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import "./App.css";
 
 function App() {
+  const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [search, setSearch] = useState("");
   const baseUrl = "https://lereacteur-vinted-api.herokuapp.com";
   const handleToken = (token) => {
     if (token) {
-      Cookies.set("token", token, { expires: 1, sameSite: "strict" });
+      Cookies.set("userToken", token, { expires: 1, sameSite: "strict" });
+      setUserToken(token);
     } else {
-      Cookies.remove("token");
+      Cookies.remove("userToken");
+      setUserToken(null);
     }
     setToken(token);
   };
@@ -26,17 +32,23 @@ function App() {
     <BrowserRouter>
       <Header
         token={token}
+        userToken={userToken}
         handleToken={handleToken}
         search={search}
         setSearch={setSearch}
-      />
+      />{" "}
       <Routes>
-        <Route path="/" element={<Home search={search} baseUrl={baseUrl} />} />
+        <Route
+          path="/"
+          element={<Characters search={search} baseUrl={baseUrl} />}
+        />
         <Route path="/characters" element={<Characters />} />
         <Route path="/characters/:characterId" element={<Characters />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/comics/:characterId" element={<Comics />} />
         <Route path="/favoris" element={<Favoris />} />
+        <Route path="/signup" element={<SignUp handleToken={handleToken} />} />
+        <Route path="/login" element={<Login handleToken={handleToken} />} />
       </Routes>
       <Footer />
     </BrowserRouter>
