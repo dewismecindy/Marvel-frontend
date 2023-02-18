@@ -13,7 +13,7 @@ const SignUp = ({ handleToken }) => {
 
     try {
       const response = await axios.post(
-        "https://lereacteur-marvel-api.netlify.app/user/signup" /* vérifier la route car mauvaise, tester le console.log(response.data) */,
+        "https://site--marvel-backend2--by69g8q6y9vr.code.run/user/signup" /* vérifier la route car mauvaise, tester le console.log(response.data) */,
         { email: email },
         { username: username },
         { password: password },

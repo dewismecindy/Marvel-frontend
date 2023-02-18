@@ -13,7 +13,7 @@ const Character = () => {
     const fetchComicsRelated = async () => {
       try {
         const response = await axios.get(
-          `https://marvel-backend-react.herokuapp.com/comics/${id}`
+          `https://site--marvel-backend2--by69g8q6y9vr.code.run/comics/${id}`
         );
         if (response) {
           setData(response.data);
