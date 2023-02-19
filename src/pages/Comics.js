@@ -9,7 +9,7 @@ const Comics = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://site--marvel-backend2--by69g8q6y9vr.code.run/related-comics"
+          "https://site--marvel-backend2--by69g8q6y9vr.code.run/comics"
         );
         /* console.log(response.data); */
         setData(response.data);
@@ -23,23 +23,24 @@ const Comics = () => {
   return isLoading ? (
     <p>En cours de chargement</p>
   ) : (
-    <div>
+    <div className="grid-container">
       {data.results.map((results, index) => {
         return (
           <Link to={`/comics/${results._id}`}>
-            <div key={results._id}> </div>
-            <p>{results.title}</p>
-            {results.description && <p>___________________________</p>}
-            <p>{results.description}</p>
-
-            <img
-              src={
-                results.thumbnail.path +
-                sizePicture +
-                results.thumbnail.extension
-              }
-              alt="comics"
-            />
+            <div className="card-comics" key={results._id}>
+              {" "}
+              <p className="blaz-perso">{results.title}</p>
+              {results.description && <p></p>}
+              <p className="espace"></p>
+              <img
+                src={
+                  results.thumbnail.path +
+                  sizePicture +
+                  results.thumbnail.extension
+                }
+                alt="comics"
+              />{" "}
+            </div>
           </Link>
         );
       })}

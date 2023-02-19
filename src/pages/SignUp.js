@@ -32,6 +32,7 @@ const SignUp = ({ handleToken }) => {
     <form className="signup-container" onSubmit={handleSubmit}>
       <h1>S'incrire</h1>
       <input
+        className="input-field"
         type="text"
         placeholder="email"
         value={email}
@@ -40,12 +41,14 @@ const SignUp = ({ handleToken }) => {
         }}
       />
       <input
+        className="input-field"
         type="text"
         placeholder="username"
         value={username}
         onChange={(event) => setUsername(event.target.value)}
       />
       <input
+        className="input-field"
         type="password"
         placeholder="password"
         value={password}
@@ -59,8 +62,9 @@ const SignUp = ({ handleToken }) => {
         onChange={() => {
           setNewsLetter(!newsLetter);
         }}
-      />
-      <input type="submit" value="S'incrire" />
+      />{" "}
+      <p>Inscris toi à notre newsletter</p>
+      <input className="submit-button" type="submit" value="S'incrire" />
     </form>
   );
 };

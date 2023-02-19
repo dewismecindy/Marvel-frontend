@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Video from "./Video";
 
-const Header = (handleToken, userToken) => {
+const Header = ({ handleToken, userToken }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (event) => {
@@ -16,51 +16,74 @@ const Header = (handleToken, userToken) => {
   };
   return (
     <header>
-      {" "}
-      <Link to="/Characters">
-        <img src={logo} alt="logo Marvel" />
-      </Link>
-      {!userToken ? (
-        <>
+      <div className="header-container">
+        <div className="logo">
+          <Link to="/Characters">
+            <img className="logo-image" src={logo} alt="logo Marvel" />
+          </Link>
+        </div>{" "}
+        <div className="container-search">
           {" "}
-          <Link to="/SignUp">
-            <button>S'inscrire</button>
+          <form className="search-bare" onSubmit={handleSearchSubmit}>
+            <label htmlFor="search-input"></label>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Entrez le nom de vos personnages préférez"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            <button type="submit">Rechercher</button>
+          </form>
+        </div>
+        <div className="login-container">
+          {" "}
+          {!userToken ? (
+            <>
+              <div className="buttons-login">
+                {" "}
+                <Link to="/SignUp">
+                  <button>S'inscrire</button>
+                </Link>
+                <Link to="/Login">
+                  <button>Se connecter</button>
+                </Link>
+              </div>
+            </>
+          ) : (
+            <Link>
+              <button
+                onClick={() => {
+                  handleToken();
+                }}
+              >
+                Se déconnecter
+              </button>
+            </Link>
+          )}{" "}
+        </div>
+      </div>
+      <div className="video-container">
+        <Video />
+      </div>
+      <div className="button-container">
+        {" "}
+        <div className="button-group">
+          {" "}
+          <Link to="/Characters">
+            <button>Personnages</button>
           </Link>
-          <Link to="/Login">
-            <button>Se connecter</button>
+          <Link to="/Comics">
+            <button>Comics</button>
           </Link>
-        </>
-      ) : (
-        <Link>
-          <button
-            onClick={() => {
-              handleToken();
-            }}
-          >
-            Se déconnecter
-          </button>
-        </Link>
-      )}
-      <Link to="/Characters">
-        <button>Personnages</button>
-      </Link>
-      <Link to="/Comics">
-        <button>Comics</button>
-      </Link>
-      <Link to="/Favoris">
-        <button>Favoris</button>
-      </Link>
-      <form onSubmit={handleSearchSubmit}>
-        <label htmlFor="search-input">Rechercher</label>
-        <input
-          type="text"
-          id="search-input"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <button type="submit">Rechercher</button>
-      </form>
-      {/*  <Video /> */} {/* positionner correctement la video à la fin  */}
+          <Link to="/Favoris">
+            <button>Favoris</button>
+          </Link>{" "}
+        </div>
+      </div>{" "}
+      <div className="titre-personnage">
+        <h2> Quel est votre personnage préféré ? </h2>
+      </div>
     </header>
   );
 };

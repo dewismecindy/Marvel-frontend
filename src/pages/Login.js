@@ -27,18 +27,20 @@ const Login = ({ handleToken }) => {
     <form className="signup-container" onSubmit={handleSubmit}>
       <h1>Se connecter</h1>
       <input
+        className="input-field"
         type="email"
         placeholder="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
       />
       <input
+        className="input-field"
         type="password"
         placeholder="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <input type="submit" value="Se connecter" />
+      <input className="submit-button" type="submit" value="Se connecter" />
     </form>
   );
 };
