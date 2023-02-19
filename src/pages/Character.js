@@ -1,7 +1,6 @@
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-import { useLocation } from "react-router-dom";
 
 const Character = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,10 +9,10 @@ const Character = () => {
   const { id } = location.state;
 
   useEffect(() => {
-    const fetchComicsRelated = async () => {
+    const fetchCharacter = async () => {
       try {
         const response = await axios.get(
-          `https://site--marvel-backend2--by69g8q6y9vr.code.run/comics/${id}`
+          `https://marvel-backend-react.herokuapp.com/comics/${id}`
         );
         if (response) {
           setData(response.data);
@@ -23,11 +22,11 @@ const Character = () => {
         console.log(error.message);
       }
     };
-    fetchComicsRelated();
+    fetchCharacter();
   }, [id]);
 
   return !isLoading ? (
-    <div className="ComicsRelated container">
+    <div className="Character container">
       {/* CHARACTER */}
       <section className="characterRelated">
         <div className="imgCharacterRelated">
@@ -48,7 +47,7 @@ const Character = () => {
         </div>
       </section>
       {/* COMICS */}
-      <section className="comicsRelatedSection">
+      <section className="CharacterSection">
         {data.comics.length !== 0 ? (
           data.comics.map((elem, i) => {
             return (
@@ -99,4 +98,5 @@ const Character = () => {
     <span>En attente ...</span>
   );
 };
+
 export default Character;
